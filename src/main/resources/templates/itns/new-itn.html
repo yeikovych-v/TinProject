@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New ITN</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Add New ITN</h1>
+<form th:action="@{/itns}" th:object="${itn}" method="post" novalidate>
+    <label>Subject:</label>
+    <input
+            type="text"
+            th:field="*{subject}"
+            data-required="true"
+            data-error="Subject is required."
+    />
+    <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="error"></span>
+    <br />
+
+    <label>Description:</label>
+    <input
+            type="text"
+            th:field="*{description}"
+            data-required="true"
+            data-error="Description is required."
+    />
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></span>
+    <br />
+
+    <label>Status:</label>
+    <select th:field="*{status}" data-required="true" data-error="Status is required.">
+        <option value="">--Select--</option>
+        <option th:each="status : ${T(v.yeikovych.tinprojectsp.model.ItnStatus).values()}"
+                th:value="${status}"
+                th:text="${status}"></option>
+    </select>
+    <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></span>
+
+
+    <label>Date Issued:</label>
+    <input
+            type="date"
+            th:field="*{dateIssued}"
+            data-required="true"
+            data-error="Date issued cannot be empty."
+    />
+    <span th:if="${#fields.hasErrors('dateIssued')}" th:errors="*{dateIssued}" class="error"></span>
+    <br />
+
+    <button type="submit">Add</button>
+    <button class="back-button" type="button" onclick="location.href='/itns'">Back</button>
+</form>
+<script src="/validation.js"></script>
+</body>
+</html>

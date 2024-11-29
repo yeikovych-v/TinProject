@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Welcome to ITN Management System</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/students}">Manage Students</a></li>
+        <li><a th:href="@{/teachers}">Manage Teachers</a></li>
+        <li><a th:href="@{/itns}">Manage ITNs</a></li>
+    </ul>
+</nav>
+</body>
+</html>

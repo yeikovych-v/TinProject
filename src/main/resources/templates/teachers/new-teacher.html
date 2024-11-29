@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Teacher</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Add New Teacher</h1>
+<form th:action="@{/teachers}" th:object="${teacher}" method="post" novalidate>
+    <label>First Name:</label>
+    <input type="text" th:field="*{firstName}"
+           data-required="true"
+           data-error="Please enter the teacher's first name." /><br />
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></span>
+
+    <label>Last Name:</label>
+    <input type="text" th:field="*{lastName}"
+           data-required="true"
+           data-error="Please enter the teacher's last name." /><br />
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}"
+           data-required="true"
+           data-error="Please provide a valid email for the teacher." /><br />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+
+    <label>Department:</label>
+    <input type="text" th:field="*{department}"
+           data-required="true"
+           data-error="Department must be provided." /><br />
+    <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="error"></span>
+
+    <label>Experience (Years):</label>
+    <input type="number" th:field="*{experienceYears}"
+           data-required="true" data-number="true"
+           data-error="Experience must be a valid number." /><br />
+    <span th:if="${#fields.hasErrors('experienceYears')}" th:errors="*{experienceYears}" class="error"></span>
+
+    <label>Tenured:</label>
+    <input type="checkbox" th:field="*{tenured}" /><br />
+
+    <button type="submit">Save</button>
+    <button class="back-button" type="button" onclick="location.href='/teachers'">Back</button>
+
+</form>
+<a th:href="@{/teachers}">Back to Teachers</a>
+<script src="/validation.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                <!--owned by s28201-->

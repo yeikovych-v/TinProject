@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ITNs</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>ITNs</h1>
+<a th:href="@{/}">Back to Main</a>
+<a th:href="@{/itns/new}">Add New ITN</a>
+<table>
+    <thead>
+    <tr>
+        <th>Subject</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date Issued</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="itn : ${itns}">
+        <td th:text="${itn.subject}"></td>
+        <td th:text="${itn.description}"></td>
+        <td th:text="${itn.status}"></td>
+        <td th:text="${itn.dateIssued}"></td>
+        <td>
+            <a th:href="@{/itns/edit/{id}(id=${itn.id})}">Edit</a>
+            <a th:href="@{/itns/delete/{id}(id=${itn.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                <!--owned by s28201-->
