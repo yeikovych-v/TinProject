@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import v.yeikovych.tinprojects.model.Itn;
 import v.yeikovych.tinprojectsp.model.Teacher;
 import v.yeikovych.tinprojectsp.repository.TeacherRepository;
 
