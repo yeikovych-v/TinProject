@@ -13,6 +13,7 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Builder
+@AllArgsConstructor
 public class AppUser {
 
     @Id

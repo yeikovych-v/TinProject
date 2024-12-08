@@ -10,7 +10,6 @@ import v.yeikovych.tinprojectsp.model.auth.AppUser;
 import v.yeikovych.tinprojectsp.repository.AppUserRepository;
 
 import javax.naming.AuthenticationException;
-import java.util.Optional;
 
 @Service
 @Transactional
