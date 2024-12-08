@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detailed ITNs</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h1>Detailed ITNs</h1>
+<table border="1">
+    <a th:href="@{/}">
+        <button class="back-button" type="button">Back to Main</button>
+    </a>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Subject</th>
+        <th>Date Issued</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Students</th>
+        <th>Teachers</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="itn : ${detailedItns}">
+        <td th:text="${itn.id}">ID</td>
+        <td th:text="${itn.subject}">Subject</td>
+        <td th:text="${itn.dateIssued}">Date Issued</td>
+        <td th:text="${itn.description}">Description</td>
+        <td th:text="${itn.status}">Status</td>
+        <td>
+            <ul>
+                <li th:each="student : ${itn.studentNames}" th:text="${student}">Student Name</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="teacher : ${itn.teacherNames}" th:text="${teacher}">Teacher Name</li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="login-box">
+        <div class="credentials-container">
+            <form class="login-form" th:action="@{/register}" th:object="${user}" method="POST">
+                <h2>Register</h2>
+                <div>
+                    <input type="text" name="first_name" placeholder="First Name" th:field="*{firstName}" required>
+                </div>
+                <div>
+                    <input type="text" name="last_name" placeholder="Last Name" th:field="*{lastName}">
+                </div>
+                <div>
+                    <input type="text" name="username" placeholder="Email" th:field="*{email}" required>
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password" th:field="*{password}" required>
+                </div>
+                <div>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password"
+                           th:field="*{matchingPassword}" required>
+                    <p class="msg-error" th:each="error: ${#fields.errors('firstName')}"
+                       th:text="${error}">Validation error</p>
+                    <p class="msg-error" th:each="error : ${#fields.errors('lastName')}"
+                       th:text="${error}">Validation error</p>
+                    <p class="msg-error" th:each="error : ${#fields.errors('email')}"
+                       th:text="${error}">Validation error</p>
+                    <p class="msg-error" th:each="error : ${#fields.globalErrors()}"
+                       th:text="${error}">Validation error</p>
+                    <p class="msg-error" th:if="${message}" th:text="${message}">Validation error</p>
+                    <p class="msg-error" th:each="error : ${#fields.errors('password')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <input type="submit" value="Register">
+                <a th:href="@{/}">
+                    <button class="logout-button" type="button">To Main Page</button>
+                </a>
+            </form>
+            <p class="register-text"><a th:href="@{/login}">Already have an account?</a></p>
+            <div class="msg-error" th:if="${param.error}">
+                Error message goes here.
+            </div>
+            <div class="msg-error" th:if="${param.success}">
+                Registration successful.
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,15 +1,11 @@
-package v.yeikovych.tinprojectsp.model;
+package v.yeikovych.tinprojectsp.model.teacher;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import v.yeikovych.tinprojectsp.dto.teacher.TeacherDto;
+import v.yeikovych.tinprojectsp.model.EntityClass;
+import v.yeikovych.tinprojectsp.model.itn.Itn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,33 +17,21 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher {
+@Builder
+public class Teacher implements EntityClass<TeacherDto> {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @NotBlank(message = "First name is required.")
-    @Size(max = 50, message = "First name cannot exceed 50 characters.")
     private String firstName;
-    @NotBlank(message = "Last name is required.")
-    @Size(max = 50, message = "Last name cannot exceed 50 characters.")
     private String lastName;
 
-    @NotBlank(message = "Department is required.")
     private String department;
-    @NotBlank(message = "Email is required.")
-    @Email(message = "Email is not valid.")
     private String email;
-    @PositiveOrZero(message = "Experience years must be zero or positive.")
     private int experienceYears;
 
-    @ManyToMany
-    @JoinTable(
-            name = "teacher_itn",
-            joinColumns = @JoinColumn(name = "teacher_id"),
-            inverseJoinColumns = @JoinColumn(name = "itn_id")
-    )
+    @ManyToMany(mappedBy = "teachers")
     private List<Itn> awardedItns = new ArrayList<>();
 
     private boolean isTenured;
@@ -66,5 +50,22 @@ public class Teacher {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    @Override
+    public TeacherDto toDto() {
+        return TeacherDto.builder()
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .experienceYears(experienceYears)
+                .department(department)
+                .isTenured(isTenured)
+                .build();
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

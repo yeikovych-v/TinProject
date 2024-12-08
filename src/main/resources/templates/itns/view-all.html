@@ -2,12 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ITNs</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>ITNs</h1>
-<a th:href="@{/}">Back to Main</a>
-<a th:href="@{/itns/new}">Add New ITN</a>
+<a th:href="@{/}">
+    <button class="back-button" type="button">Back to Main</button>
+</a>
+<a th:href="@{/itns/new}">
+    <button class="logout-button" type="button">Add New ITN</button>
+</a>
 <table>
     <thead>
     <tr>
@@ -25,6 +29,7 @@
         <td th:text="${itn.status}"></td>
         <td th:text="${itn.dateIssued}"></td>
         <td>
+            <a th:href="@{/itns/detailed/{id}(id=${itn.id})}">Detailed</a>
             <a th:href="@{/itns/edit/{id}(id=${itn.id})}">Edit</a>
             <a th:href="@{/itns/delete/{id}(id=${itn.id})}">Delete</a>
         </td>

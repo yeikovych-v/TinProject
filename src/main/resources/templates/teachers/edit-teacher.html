@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Edit Teacher</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>Edit Teacher</h1>
@@ -10,40 +10,39 @@
     <label>First Name:</label>
     <input type="text" th:field="*{firstName}"
            data-required="true"
-           data-error="First name is required." /><br />
-    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></span>
+           data-error="Please enter the teacher's first name." /><br />
+    <span th:if="${firstNameErr}" th:text="${firstNameErr}" class="error"></span>
 
     <label>Last Name:</label>
     <input type="text" th:field="*{lastName}"
            data-required="true"
-           data-error="Last name is required." /><br />
-    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+           data-error="Please enter the teacher's last name." /><br />
+    <span th:if="${lastNameErr}" th:text="${lastNameErr}" class="error"></span>
 
     <label>Email:</label>
     <input type="email" th:field="*{email}"
-           data-email="true"
-           data-error="Please provide a valid email." /><br />
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+           data-required="true"
+           data-error="Please provide a valid email for the teacher." /><br />
+    <span th:if="${emailErr}" th:text="${emailErr}" class="error"></span>
 
     <label>Department:</label>
     <input type="text" th:field="*{department}"
            data-required="true"
            data-error="Department must be provided." /><br />
-    <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="error"></span>
+    <span th:if="${departmentErr}" th:text="${departmentErr}" class="error"></span>
 
     <label>Experience (Years):</label>
     <input type="number" th:field="*{experienceYears}"
-           data-number="true"
+           data-required="true" data-number="true"
            data-error="Experience must be a valid number." /><br />
-    <span th:if="${#fields.hasErrors('experienceYears')}" th:errors="*{experienceYears}" class="error"></span>
+    <span th:if="${experienceYearsErr}" th:text="${experienceYearsErr}" class="error"></span>
 
     <label>Tenured:</label>
     <input type="checkbox" th:field="*{tenured}" /><br />
 
-    <button type="submit">Update</button>
+    <button type="submit">Save</button>
     <button class="back-button" type="button" onclick="location.href='/teachers'">Back</button>
 </form>
-<a th:href="@{/teachers}">Back to Teachers</a>
-<script src="/validation.js"></script>
+<script src="/js/validation.js"></script>
 </body>
 </html>

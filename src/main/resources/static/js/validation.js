@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const forms = document.querySelectorAll("form");
 
+    console.log("Validation.js loaded successfully.");
+
     forms.forEach((form) => {
         form.addEventListener("submit", function (event) {
             let isValid = true;
+
+            console.log("Form submit intercepted by validation.js.");
 
             const requiredFields = form.querySelectorAll("[data-required]");
             requiredFields.forEach((field) => {
@@ -59,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function clearError(field) {
         const errorElement = field.nextSibling;
-        if (errorElement && errorElement.classList.contains("error")) {
+
+        if (errorElement && errorElement.nodeType === Node.ELEMENT_NODE && errorElement.classList.contains("error")) {
             errorElement.remove();
         }
 

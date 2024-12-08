@@ -1,14 +1,12 @@
-package v.yeikovych.tinprojectsp.model;
+package v.yeikovych.tinprojectsp.model.itn;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
-import v.yeikovych.tinprojectsp.util.ValidEnum;
+import v.yeikovych.tinprojectsp.dto.itn.ItnDto;
+import v.yeikovych.tinprojectsp.model.EntityClass;
+import v.yeikovych.tinprojectsp.model.student.Student;
+import v.yeikovych.tinprojectsp.model.teacher.Teacher;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,18 +19,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Itn {
+@Builder
+public class Itn implements EntityClass<ItnDto> {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @NotBlank(message = "Subject is required.")
     private String subject;
 
-    @NotNull(message = "Date issued cannot be null.")
     private LocalDate dateIssued;
-    @NotBlank(message = "Description is required.")
     private String description;
 
     @ManyToMany
@@ -43,10 +39,14 @@ public class Itn {
     )
     private List<Student> students = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "awardedItns")
+    @ManyToMany
+    @JoinTable(
+            name = "teacher_itn",
+            joinColumns = @JoinColumn(name = "itn_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
     private List<Teacher> teachers = new ArrayList<>();
 
-    @ValidEnum(enumClass = ItnStatus.class, message = "Should be Either: [Pending] or [Completed]")
     private ItnStatus status;
 
     @Override
@@ -63,5 +63,15 @@ public class Itn {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    public ItnDto toDto() {
+        return ItnDto.builder()
+                .id(id)
+                .subject(subject)
+                .dateIssued(dateIssued)
+                .description(description)
+                .status(status)
+                .build();
     }
 }

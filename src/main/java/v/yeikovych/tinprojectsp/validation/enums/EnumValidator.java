@@ -1,4 +1,4 @@
-package v.yeikovych.tinprojectsp.util;
+package v.yeikovych.tinprojectsp.validation.enums;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

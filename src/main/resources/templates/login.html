@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="login-box">
+        <div class="credentials-container">
+            <form class="login-form" th:action="@{/login}" method="POST">
+                <h2>Login</h2>
+                <input type="text" name="username" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+                <a th:href="@{/}">
+                    <button class="logout-button" type="button">To Main Page</button>
+                </a>
+            </form>
+            <p class="register-text"><a th:href="@{/register}">Don't have an account?</a></p>
+            <div class="msg-error" th:if="${param.error}">
+                Invalid username or password.
+            </div>
+            <div class="msg-error" th:if="${param.logout}">
+                You have been logged out.
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

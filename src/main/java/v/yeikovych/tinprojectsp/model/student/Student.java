@@ -1,15 +1,14 @@
-package v.yeikovych.tinprojectsp.model;
+package v.yeikovych.tinprojectsp.model.student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import v.yeikovych.tinprojectsp.dto.student.StudentDto;
+import v.yeikovych.tinprojectsp.model.EntityClass;
+import v.yeikovych.tinprojectsp.model.itn.Itn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,26 +20,19 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Student {
+@Builder
+public class Student implements EntityClass<StudentDto> {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @NotBlank(message = "First name is required.")
-    @Size(max = 50, message = "First name cannot exceed 50 characters.")
     private String firstName;
 
-    @NotBlank(message = "Last name is required.")
-    @Size(max = 50, message = "Last name cannot exceed 50 characters.")
     private String lastName;
 
-    @Email(message = "Please provide a valid email address.")
-    @NotBlank(message = "Email is required.")
     private String email;
 
-    @Min(value = 1, message = "Age must be 1 or greater.")
-    @NotNull(message = "Age is required.")
     private Integer age;
 
     @ManyToMany(mappedBy = "students")
@@ -62,5 +54,21 @@ public class Student {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    @Override
+    public StudentDto toDto() {
+        return StudentDto.builder()
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .age(age)
+                .isActive(isActive)
+                .build();
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

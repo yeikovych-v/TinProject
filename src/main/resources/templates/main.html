@@ -2,16 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>Welcome to ITN Management System</h1>
 <nav>
-    <ul>
-        <li><a th:href="@{/students}">Manage Students</a></li>
-        <li><a th:href="@{/teachers}">Manage Teachers</a></li>
-        <li><a th:href="@{/itns}">Manage ITNs</a></li>
-    </ul>
+    <div id="name-logout">
+        <p id="user-name" th:if="${username}" th:text="${username}">
+            John Doe
+        </p>
+        <a th:href="@{/login}" th:unless="${username}">
+            <button class="logout-button" type="button">Login</button>
+        </a>
+        <a th:href="@{/logout}" th:if="${username}">
+            <button class="logout-button" type="button">Log Out</button>
+        </a>
+    </div>
+
+    <div class="button-container">
+        <a th:href="@{/students}">
+            <button class="nav-button">Manage Students</button>
+        </a>
+        <a th:href="@{/teachers}">
+            <button class="nav-button">Manage Teachers</button>
+        </a>
+        <a th:href="@{/itns}">
+            <button class="nav-button">Manage ITNs</button>
+        </a>
+    </div>
+
+
 </nav>
 </body>
 </html>

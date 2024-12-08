@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Edit Student</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>Edit Student</h1>
@@ -14,7 +14,8 @@
             data-required="true"
             data-error="First name is required."
     />
-    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></span>
+    <span th:if="${firstNameErr}" th:text="${firstNameErr}" class="error"></span>
+
     <br />
 
     <label>Last Name:</label>
@@ -24,7 +25,8 @@
             data-required="true"
             data-error="Last name is required."
     />
-    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+    <span th:if="${lastNameErr}" th:text="${lastNameErr}" class="error"></span>
+
     <br />
 
     <label>Email:</label>
@@ -32,9 +34,11 @@
             type="email"
             th:field="*{email}"
             data-required="true"
+            data-email="true"
             data-error="Valid email is required."
     />
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+    <span th:if="${emailErr}" th:text="${emailErr}" class="error"></span>
+
     <br />
 
     <label>Age:</label>
@@ -42,19 +46,19 @@
             type="number"
             th:field="*{age}"
             data-required="true"
+            data-number="true"
             data-error="Age is required and must be valid."
     />
-    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error"></span>
+    <span th:if="${ageErr}" th:text="${ageErr}" class="error"></span>
     <br />
 
     <label>Active:</label>
     <input type="checkbox" th:field="*{active}" /><br />
 
-    <button type="submit">Update</button>
+    <button type="submit">Save</button>
     <button class="back-button" type="button" onclick="location.href='/students'">Back</button>
 </form>
-<a th:href="@{/students}">Back to Students</a>
-<script src="/validation.js"></script>
+<script src="/js/validation.js"></script>
 </body>
 </html>
 

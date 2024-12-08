@@ -2,12 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Teachers</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>Teachers</h1>
-<a th:href="@{/}">Back to Main</a>
-<a th:href="@{/teachers/new}">Add New Teacher</a>
+<a th:href="@{/}">
+    <button class="back-button" type="button">Back to Main</button>
+</a>
+<a th:href="@{/teachers/new}">
+    <button class="logout-button" type="button">Add New Teacher</button>
+</a>
 <table>
     <thead>
     <tr>
